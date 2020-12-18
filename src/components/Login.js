@@ -6,7 +6,7 @@ import {Redirect} from 'react-router-dom'
 
 const REACT_APP_SERVER_URL = process.env.REACT_APP_SERVER_URL
 
-const Login = () => {
+const Login = (props) => {
     
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,7 +21,23 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-    
+        const userData = {email, password}
+
+        axios.post(`${REACT_APP_SERVER_URL}/api/users/login`, userData)
+        .then(response => {
+            const {token} = response.data
+            // save token to localstorage
+            localStorage.setItem('jwtToken', token)
+            // set token to auth header
+            setAuthToken(token);
+            // decode token to get the user data
+            const decoded = jwt_decode(token)
+            // set current user
+            props.nowCurrentUser(decoded)
+        })
+        .catch(error => {
+            console.log(error)
+        })
     }
 
     if (props.user) return <Redirect to='/profile' />
