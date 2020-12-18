@@ -1,12 +1,12 @@
 import React from 'react'
 import {NavLink, Link} from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = (props) => {
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
                 <Link className="navbar-brand" to="/">MERN Auth</Link>
-                <button className="navbar-toggler" type='button' data-toggle="#navbarsExample07" data-target="#navbarsExample07" aria-controlls="#navbarsExample07" aria-label="Toggle Navigation">
+                <button className="navbar-toggler" type='button' data-toggle="#navbarsExample07" data-target="#navbarsExample07" aria-controls="#navbarsExample07" aria-label="Toggle Navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsExample07">
