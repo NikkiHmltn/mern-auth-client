@@ -10,15 +10,34 @@ const Navbar = () => {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarsExample07">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <NavLink classname="nav-link" exact to="/">Home</NavLink>
+                            <NavLink className="nav-link" exact to="/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink classname="nav-link" exact to="/about">About</NavLink>
+                            <NavLink className="nav-link" to="/about">About</NavLink>
                         </li>
                     </ul>
-                    {}
+                    {
+                        props.isAuth ?
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <NavLink className="nav-link" to="/profile">Profile</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <span onClick={props.handleLogout} className="nav-link logout-link">Logout</span>
+                            </li>
+                        </ul>
+                        :
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <NavLink className="nav-link"  to="/signup">Create Account</NavLink>
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className="nav-link"  to="/login">Login</NavLink>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>
